@@ -33,6 +33,8 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
       //always add the ajax action
       add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'czr_fn_dismiss_update_notice_action' ) );
 
+      // custom call to dismiss wp pointer
+      add_action( 'wp_ajax_custom_wp_dismiss_pointer'    , array( $this , 'czr_fn_custom_wp_dismiss_pointer_action' ) );
 
 
       /* beautify admin notice text using some defaults the_content filter callbacks */
@@ -467,6 +469,36 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
       $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
       czr_fn_set_option( $opt_name, $new_val );
       wp_die();
+    }
+
+    /**
+     * Handles custom dismissing a WordPress pointer via AJAX.
+     */
+    function czr_fn_custom_wp_dismiss_pointer_action() {
+
+      if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'custom_wp_dismiss_pointer' ) ) {
+        // Nonce verification failed
+        wp_send_json_error( 'Invalid nonce.' );
+      }
+      $pointer = $_POST['pointer'];
+
+      if ( sanitize_key( $pointer ) != $pointer ) {
+        wp_die( 0 );
+      }
+
+      //  check_ajax_referer( 'dismiss-pointer_' . $pointer );
+
+      $dismissed = array_filter( explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) ) );
+
+      if ( in_array( $pointer, $dismissed, true ) ) {
+        wp_die( 0 );
+      }
+
+      $dismissed[] = $pointer;
+      $dismissed   = implode( ',', $dismissed );
+
+      update_user_meta( get_current_user_id(), 'dismissed_wp_pointers', $dismissed );
+      wp_die( 1 );
     }
 
 

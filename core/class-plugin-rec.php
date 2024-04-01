@@ -60,17 +60,19 @@ function czr_fn_print_l_rec_notice( $button_text, $button_link ) {
     ),
     __( "The plugin is lightweight and has been designed to integrate seamlessly with Customizr and any WordPress theme.", 'customizr')
   );
-
+  $custom_nonce = wp_create_nonce('custom_wp_dismiss_pointer');
   $notice_id = REC_NOTICE_ID;
   ?>
   <script>
     jQuery( function( $ ) {
+      var customNonce = '<?php echo esc_js($custom_nonce); ?>';
     // .notice-dismiss button markup is added by WP
     $( <?php echo wp_json_encode( "#$notice_id" ); ?> ).on( 'click', '.notice-dismiss', function() {
       $(this).closest('.is-dismissible').slideUp('fast');//<= this line is not mandatory since WP has its own way to remove the is-dismissible block
       $.post( ajaxurl, {
         pointer: <?php echo wp_json_encode( $notice_id ); ?>,
-        action: 'dismiss-wp-pointer'
+        action: 'custom_wp_dismiss_pointer',
+        nonce: customNonce // Pass the nonce
       } );
     } );
   } );
@@ -98,14 +100,17 @@ function czr_fn_print_s_rec_notice( $button_text, $button_link ) {
           __('like this', 'customizr')
       )
   );
+  $custom_nonce = wp_create_nonce('custom_wp_dismiss_pointer');
   $notice_id = REC_NOTICE_ID;
   ?>
   <script>
     jQuery( function( $ ) {
+      var customNonce = '<?php echo esc_js($custom_nonce); ?>';
     $( <?php echo wp_json_encode( "#$notice_id" ); ?> ).on( 'click', '.notice-dismiss', function() {
       $.post( ajaxurl, {
         pointer: <?php echo wp_json_encode( $notice_id ); ?>,
-        action: 'dismiss-wp-pointer'
+        action: 'custom_wp_dismiss_pointer',
+        nonce: customNonce // Pass the nonce
       } );
     } );
   } );
