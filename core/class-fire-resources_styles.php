@@ -7,6 +7,7 @@
 * @package            Customizr
 */
 if ( !class_exists( 'CZR_resources_styles' ) ) :
+   #[\AllowDynamicProperties]
    class CZR_resources_styles {
         //Access any method or var of the class with classname::$instance->var or method():
         static $instance;

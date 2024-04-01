@@ -13,6 +13,7 @@
 
 
 if ( ! class_exists( 'CZR_Model' ) ) :
+  #[\AllowDynamicProperties]
   class CZR_Model {
     static $instance;
 
@@ -1049,11 +1050,13 @@ if ( ! class_exists( 'CZR_View' ) ) :
         //ADD ATTRIBUTES TO THE WRAPPER
         if ( is_user_logged_in() ) {
             /* Maybe merge debug info into the model element attributes */
-            $this -> model -> element_attributes = is_array( $this -> model -> element_attributes ) ? $this -> model -> element_attributes : explode( ' ', $this -> model -> element_attributes );
-            $this -> model -> element_attributes = join( ' ', array_filter( array_unique( array_merge( $this -> model -> element_attributes, array(
-                'data-czr-model_id="'. $this -> model -> id .'"',
-                isset( $this -> model -> template ) ? 'data-czr-template="templates/parts/'. $this -> model -> template .'"' : ''
-            )))) );
+            if($this -> model -> element_attributes !== null){
+              $this -> model -> element_attributes = is_array( $this -> model -> element_attributes ) ? $this -> model -> element_attributes : explode( ' ', $this -> model -> element_attributes );
+              $this -> model -> element_attributes = join( ' ', array_filter( array_unique( array_merge( $this -> model -> element_attributes, array(
+                  'data-czr-model_id="'. $this -> model -> id .'"',
+                  isset( $this -> model -> template ) ? 'data-czr-template="templates/parts/'. $this -> model -> template .'"' : ''
+              )))) );
+            }
         }
 
         $this -> czr_fn_render();

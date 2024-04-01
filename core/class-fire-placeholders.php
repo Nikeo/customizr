@@ -6,6 +6,7 @@
 *
 */
 if ( ! class_exists( 'CZR_placeholders' ) ) :
+  #[\AllowDynamicProperties]
   class CZR_placeholders {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;

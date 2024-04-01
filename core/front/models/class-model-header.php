@@ -1,4 +1,5 @@
 <?php
+#[\AllowDynamicProperties]
 class CZR_header_model_class extends CZR_Model {
 
   public $primary_nbwrapper_class;

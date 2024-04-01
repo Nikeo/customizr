@@ -113,7 +113,7 @@ class CZR_main_content_model_class extends CZR_Model {
             //__before_main_wrapper, 200
             //__before_regular_{post|page}_heading_title
             //__after_regular_{post|page}_heading_title
-            $_singular_thumb_option = czr_fn_opt( "tc_single_${context}_thumb_location" );
+            $_singular_thumb_option = czr_fn_opt( "tc_single_{$context}_thumb_location" );
 
             //nothing to do:
             if ( ! ( $_singular_thumb_option && 'hide' !== $_singular_thumb_option ) ) {
