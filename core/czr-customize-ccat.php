@@ -1555,7 +1555,9 @@ if ( ! class_exists( 'CZR_Customize_Panels') ) :
       ?>
       <li id="accordion-panel-{{ data.id }}" class="accordion-section control-section control-panel control-panel-{{ data.type }}">
         <h3 class="accordion-section-title" tabindex="0">
-          {{ data.title }}
+        <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="{{ data.type }}_sec-content">
+        {{ data.title }}
+				</button>
           <span class="czr-panel-subtitle">{{ data.czr_subtitle }}</span>
           <span class="screen-reader-text"><?php _e( 'Press return or enter to open this panel', 'customizr' ); ?></span>
         </h3>
