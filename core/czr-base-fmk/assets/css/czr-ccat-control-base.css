@@ -268,6 +268,26 @@ li#customize-control-custom_css textarea {
   line-height: 23px;
 }
 
+#customize-theme-controls .customize-pane-parent h3.accordion-section-title {
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;
+  column-gap: 10px;
+  position:relative;
+}
+#customize-theme-controls .accordion-section-title:after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+#customize-theme-controls .customize-pane-parent .accordion-section-title .accordion-trigger {
+  padding-left:0;
+  width: auto;
+}
+#customize-theme-controls .customize-pane-parent  .czr-panel-subtitle{
+  width:100%;
+  display:block;
+}
+
 /*<@4.9compat>*/
 /* outer section introduced in v4.9 needs to keep its original width */
 #customize-outer-theme-controls li[id*="customize-control-"] {
