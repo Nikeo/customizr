@@ -268,20 +268,18 @@ li#customize-control-custom_css textarea {
   line-height: 23px;
 }
 
-#customize-theme-controls .customize-pane-parent h3.accordion-section-title {
+#customize-theme-controls .customize-pane-parent h3.accordion-section-title .accordion-trigger{
   display: flex;
   align-items: center;
   flex-wrap:wrap;
   column-gap: 10px;
   position:relative;
+  padding-left:0;
+  width: 100%;
 }
 #customize-theme-controls .accordion-section-title:after {
   top: 50%;
   transform: translateY(-50%);
-}
-#customize-theme-controls .customize-pane-parent .accordion-section-title .accordion-trigger {
-  padding-left:0;
-  width: auto;
 }
 #customize-theme-controls .customize-pane-parent  .czr-panel-subtitle{
   width:100%;
