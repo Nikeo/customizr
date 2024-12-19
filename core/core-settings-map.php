@@ -635,8 +635,9 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '1'
                             ),
                             'notice'    => sprintf( __('Make sure the topbar is displayed. You can control the visibility of the topbar in the %s.' , "customizr"),
-                                sprintf( '<a href="%1$s" title="%2$s">Header general design settings</a>',
+                                sprintf( '<a href="%1$s" title="%3$s">%2$s</a>',
                                     "javascript:wp.customize.control('tc_theme_options[tc_header_show_topbar]').focus();",
+                                    __("Header general design settings" , "customizr"),
                                     __("jump to the topbar option" , "customizr")
                                 )
                             )
